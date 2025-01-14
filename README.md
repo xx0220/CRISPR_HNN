@@ -1,5 +1,5 @@
-# CRISPR-HNN
-Prediction of CRISPR/Cas9 sgRNA Activity Based on a Hybrid Neural Network  
+# CRISPR_HNN
+Prediction of CRISPR-Cas9 On-Target Activity Based on a Hybrid Neural Network 
 
 Below is the layout of the whole model.
 # Environment
@@ -20,7 +20,7 @@ Include 9 public datasets:
 * HELA
 * HL60
 # File description
-* model.py: Crispr-HNN model overall architecture
-* model_train.py: Running this file to train the Crispr-HNN model. (5-fold cross-validation)
-* model_test.py: Running this file to evaluate the Crispr-HNN model. (Demonstrate model performance by evaluating metrics through two regression question evaluation indicators)
-* csvtopkl.py: Process the dataset by calling csvtopkl.py to obtain the encoding format required by CRISPR-HNN.
+* model.py: Crispr_HNN model overall architecture
+* model_train.py: Running this file to train the Crispr_HNN model. (5-fold cross-validation)
+* model_test.py: Running this file to evaluate the Crispr_HNN model. (Demonstrate model performance by evaluating metrics through two regression question evaluation indicators)
+* csvtopkl.py: Process the dataset by calling csvtopkl.py to obtain the encoding format required by CRISPR_HNN.
