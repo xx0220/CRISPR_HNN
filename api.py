@@ -53,15 +53,15 @@ def predictxx():
     sequence = data["sequence"]
 
     if database == "ESP":
-        model = tf.keras.models.load_model(f'./application/lcxmodel_ESP.h5',
+        model = tf.keras.models.load_model(f'./application/CRISPR_HNN_ESP.h5',
                                            custom_objects={'MultiHeadAttention': MultiHeadAttention})
         print('ESP Model loaded')
     elif database == "HF":
-        model = tf.keras.models.load_model(f'./application/lcxmodel_HF.h5',
+        model = tf.keras.models.load_model(f'./application/CRISPR_HNN_HF.h5',
                                            custom_objects={'MultiHeadAttention': MultiHeadAttention})
         print('HF Model loaded')
     else:
-        model = tf.keras.models.load_model(f'./application/lcxmodel_WT.h5',
+        model = tf.keras.models.load_model(f'./application/CRISPR_HNN_WT.h5',
                                            custom_objects={'MultiHeadAttention': MultiHeadAttention})
         print('WT Model loaded')
 
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     except:
         port = 12345  # If you don't provide any port then the port will be set to 12345
 
-    # model = tf.keras.models.load_model(f'./application/lcxmodel_WT.h5',
+    # model = tf.keras.models.load_model(f'./application/CRISPR_HNN_WT.h5',
     #                                    custom_objects={'MultiHeadAttention': MultiHeadAttention})
     # print('Model loaded')
     app.run(port=port, debug=True, use_reloader=False)
