@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Crispr-HNN</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+<!-- Navigation Bar -->
+<nav class="bg-white shadow">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between py-4">
+            <div class="text-xl font-bold">Crispr-HNN</div>
+        </div>
+    </div>
+</nav>
+
+<!-- main -->
+<div class="container mx-auto px-4 py-8 flex">
+    <!-- Input -->
+    <div class="w-1/2 bg-white rounded shadow p-6">
+        <h2 class="text-xl font-bold mb-4">Input</h2>
+        <label class="block mb-2">Select Database:</label>
+        <select id="database" class="w-full border rounded px-3 py-2 mb-4">
+            <option value="WT">WT</option>
+            <option value="ESP">ESP</option>
+            <option value="HF">HF</option>
+        </select>
+        <label class="block mb-2">Input sequence:</label>
+        <input type="text" id="sequence" class="w-full border rounded px-3 py-2 mb-4" placeholder="Please enter a sequence">
+        <button onclick="submitData()" class="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded">Submit</button>
+    </div>
+
+    <!-- Output -->
+    <div class="w-1/2 bg-white rounded shadow p-6 ml-4">
+        <h2 class="text-xl font-bold mb-4">Output</h2>
+        <table class="table-auto w-full border-collapse border">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border px-4 py-2">Database</th>
+                    <th class="border px-4 py-2">Sequence</th>
+                    <th class="border px-4 py-2">Predict</th>
+                </tr>
+            </thead>
+            <tbody id="resultTable">
+                <!-- result -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="container mx-auto px-4 py-4 text-center text-sm text-gray-600">
+    If you find any errors during use, please send an email to <a href="mailto:455156125@stu.zafu.edu.cn" class="text-blue-600">455156125@stu.zafu.edu.cn</a> and I will fix it as soon as possible.
+</div>
+
+<script>
+function submitData(){
+    let database = document.getElementById('database').value;
+    let sequence = document.getElementById('sequence').value;
+
+    let data = {
+        "database": database,
+        "sequence": sequence
+    };
+
+    axios.post('http://127.0.0.1:12345/predictxx', data)
+        .then(function (response) {
+            let prediction = response.data.prediction;
+            let table = document.getElementById('resultTable');
+            let newRow = table.insertRow();
+            let cell1 = newRow.insertCell(0);
+            let cell2 = newRow.insertCell(1);
+            let cell3 = newRow.insertCell(2);
+
+            cell1.innerText = database;
+            cell2.innerText = sequence;
+            cell3.innerText = prediction;
+        })
+        .catch(function (error) {
+            alert('Error：' + error);
+        });
+}
+</script>
+
+</body>
+</html>
